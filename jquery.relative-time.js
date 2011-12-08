@@ -5,7 +5,7 @@
  */
 (function($, window, undefined){
 
-    $.fn.relativeDate = function(opts){
+    $.fn.relativeTime = function(opts){
         var defaults = {
             dateGetter: function(el){
                 return $(el).attr('datetime') || $(el).text();

@@ -51,7 +51,7 @@
             var words = time_ago_in_words_with_parsing(date_str);
             if (words) {
                 $(this).html(words);
-                if (!element.attr('title')) { element.attr('title', date_str); }
+                if (! ($(this).attr('title'))) { $(this).attr('title', date_str); }
             }
         });
     };

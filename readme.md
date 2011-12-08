@@ -13,4 +13,13 @@ Usage:
         <li><a href="#">Item 3</a> <span class="timestamp">12/02/2010 07:37:29</span></li>
     </ul>
     ...
-    $('.timestamp').relativeDate();
+    $('.timestamp').relativeTime();
+
+
+    <article class='relative_times'>
+         <time datetime="0">Unix epoch</time>
+         <time>2011-12-08</time>
+    </article>
+
+
+    $(".relative_times time, time.relative").relativeTime();

@@ -11,15 +11,23 @@
                 return $(el).text();
             }
         },
+
         options = $.extend({}, defaults, opts),
+
         time_ago_in_words_with_parsing = function(from) {
             var date = new Date;
             date.setTime(Date.parse(from));
-            return time_ago_in_words(date);
+            if (isNaN(date.getTime())) {
+                return null;
+            } else {
+                return time_ago_in_words(date);
+            }
         },
+
         time_ago_in_words = function(from) {
             return distance_of_time_in_words(new Date, from);
         },
+
         distance_of_time_in_words = function(to, from) {
             var distance_in_seconds = ((to - from) / 1000);
             var distance_in_minutes = Math.floor(distance_in_seconds / 60);
@@ -38,10 +46,14 @@
             return 'over ' + Math.floor(distance_in_minutes / 525960) + ' years ago';
         }
 
-        return $(this).each(function(){
-            date_str = options.dateGetter(this);
-            $(this).html(time_ago_in_words_with_parsing(date_str));
+        return $(this).each(function() {
+            var date_str = options.dateGetter(this);
+            var words = time_ago_in_words_with_parsing(date_str);
+            if (words) {
+                $(this).html(words);
+                if (!element.attr('title')) { element.attr('title', date_str); }
+            }
         });
     };
-
 })(jQuery, window);
+
